@@ -14,43 +14,38 @@ import * as selectors from '../store/selector/selector'
 export class DisplayUserComponent implements OnInit {
 
   // userData$: Observable<DataInterface[]> = this.store.select((state) => state.userData)
-  userData$: Observable<DataInterface[]>
-  // usersData$: Array<any> = []
-  userIdData$: Array<any> = [];
+  userData$: Array<DataInterface>
+  userIdData$: Array<DataInterface>
   isDataById: boolean = false
-  isLoading$: boolean = false;
+  isLoading$: Observable<boolean>
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    // this.getAllData()
+    this.getAllData()
   }
 
   getAllData() {
     console.log("Store Value::", this.store)
     this.isDataById = false;
-    // this.usersData$ = []
     console.log("UserData$:::", this.userData$)
 
     this.store.dispatch(new AllActions.GetAllData());
 
-    // this.store.select(selectors.isLoader())
-    //   .subscribe((response) => {
-    //     console.log("Loding Response::",response.isLoading)
-    //     this.isLoading$ = response.isLoading
-    //   })
+    this.isLoading$ = this.store.select(selectors.isLoader)
 
-    // this.store.select(selectors.getAllUsersData())
-    //   .subscribe((response) => {
-    //     this.userData$ = response.userData
-    //   })
+    this.store.select(selectors.getAllUsersData)
+      .subscribe((response) => {
+        console.log("Userdata::",response)
+        this.userData$ = response
+      })
   }
 
   getDataById() {
     this.isDataById = true;
     this.store.select(selectors.getUserById(4))
-      .subscribe((data) => {
-        this.userIdData$ = data
+      .subscribe((response) => {
+        this.userIdData$ = response
         console.log("By Index Data:::", this.userIdData$)
       })
   }

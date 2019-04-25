@@ -2,7 +2,7 @@
 <button (click)="getDataById()">Get Data of ID 4</button>
 <br><br>
 
-<div class="spinner-border text-danger" *ngIf="isLoading$">
+<div class="spinner-border text-danger" *ngIf="isLoading$ | async">
   <!-- {{isLoading$}} -->
 </div>
 

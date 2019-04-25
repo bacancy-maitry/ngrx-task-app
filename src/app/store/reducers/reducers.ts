@@ -14,10 +14,6 @@ export function userReducer(state: AppState[] = [defaultState], action: UserActi
             return { ...state, isLoading: true }
         case UserActions.GET_SUCCESS_DATA:
             return { userData: action.payload, isLoading: false }
-        // case UserActions.GET_ALL_DATA:
-        //     return [...state];
-        // case UserActions.GET_SUCCESS_DATA:
-        //     return [defaultState.userData, action.payload]
         default:
             return state;
     }
