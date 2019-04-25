@@ -1,0 +1,52 @@
+<button (click)="getAllData()">Get All Data</button>
+<button (click)="getDataById()">Get Data of ID 4</button>
+<br><br>
+
+<div class="spinner-border text-danger" *ngIf="isLoading$">
+  <!-- {{isLoading$}} -->
+</div>
+
+<p>
+  display-user works!
+</p>
+
+<div *ngIf="!isDataById">
+  <table border="1">
+    <thead>
+      <th>UserId</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Body</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let data of userData$">
+        <td>{{ data.userId }}</td>
+        <td>{{ data.id }}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.body }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="isDataById">
+  <table border="1">
+    <thead>
+      <th>UserId</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Body</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let data of userIdData$">
+        <td>{{ data.userId }}</td>
+        <td>{{ data.id }}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.body }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
