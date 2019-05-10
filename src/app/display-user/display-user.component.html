@@ -6,11 +6,8 @@
   <!-- {{isLoading$}} -->
 </div>
 
-<p>
-  display-user works!
-</p>
 
-<div *ngIf="!isDataById">
+<div>
   <table border="1">
     <thead>
       <th>UserId</th>
@@ -21,27 +18,6 @@
 
     <tbody>
       <tr *ngFor="let data of userData$">
-        <td>{{ data.userId }}</td>
-        <td>{{ data.id }}</td>
-        <td>{{ data.title }}</td>
-        <td>{{ data.body }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-<div *ngIf="isDataById">
-  <table border="1">
-    <thead>
-      <th>UserId</th>
-      <th>Id</th>
-      <th>Title</th>
-      <th>Body</th>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let data of userIdData$">
         <td>{{ data.userId }}</td>
         <td>{{ data.id }}</td>
         <td>{{ data.title }}</td>

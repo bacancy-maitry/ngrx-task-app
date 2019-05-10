@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/effects/effects';
 import { DisplayUserComponent } from './display-user/display-user.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,10 @@ import { DisplayUserComponent } from './display-user/display-user.component';
     StoreModule.forRoot({
       userData: userReducer
     }),
-    EffectsModule.forRoot([UserEffects])
+    StoreDevtoolsModule.instrument({
+      maxAge: 10,
+    }),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,22 +10,21 @@ import { DataInterface } from 'src/app/interface/data-interface';
 @Injectable()
 export class UserEffects {
 
-    @Effect()
-    getAllData$:Observable<Action> = this.actions$.pipe(
-        ofType<AllActions.GetAllData>(
-            AllActions.GET_ALL_DATA
+  constructor(private actions$: Actions, private appService: AppService) { }
+
+  @Effect()
+  getAllData$: Observable<Action> = this.actions$.pipe(
+    ofType<AllActions.GetAllData>(
+      AllActions.GET_ALL_DATA
+    ),
+    mergeMap((actions: AllActions.GetAllData) =>
+      this.appService.getAllData().pipe(
+        map(
+          (userData: DataInterface[]) => {
+            console.log("In Effects::", userData)
+            return new AllActions.GetSuccessData(userData)
+          }
         ),
-        mergeMap((actions: AllActions.GetAllData) =>
-            this.appService.getAllData().pipe(
-                map(
-                    (userData: DataInterface[]) => {
-                        console.log("In Effects::", userData)
-                        return new AllActions.GetSuccessData(userData)
-                    }
-                ),
-            ))
-    )
-
-    constructor(private actions$: Actions, private appService: AppService) { }
-
+      ))
+  )
 }

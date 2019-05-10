@@ -15,8 +15,6 @@ export class DisplayUserComponent implements OnInit {
 
   // userData$: Observable<DataInterface[]> = this.store.select((state) => state.userData)
   userData$: Array<DataInterface>
-  userIdData$: Array<DataInterface>
-  isDataById: boolean = false
   isLoading$: Observable<boolean>
 
   constructor(private store: Store<AppState>) { }
@@ -27,7 +25,6 @@ export class DisplayUserComponent implements OnInit {
 
   getAllData() {
     console.log("Store Value::", this.store)
-    this.isDataById = false;
     console.log("UserData$:::", this.userData$)
 
     this.store.dispatch(new AllActions.GetAllData());
@@ -36,17 +33,16 @@ export class DisplayUserComponent implements OnInit {
 
     this.store.select(selectors.getAllUsersData)
       .subscribe((response) => {
-        console.log("Userdata::",response)
+        console.log("Userdata::", response)
         this.userData$ = response
       })
   }
 
   getDataById() {
-    this.isDataById = true;
     this.store.select(selectors.getUserById(4))
       .subscribe((response) => {
-        this.userIdData$ = response
-        console.log("By Index Data:::", this.userIdData$)
+        this.userData$ = response
+        console.log("By Index Data:::", this.userData$)
       })
   }
 
