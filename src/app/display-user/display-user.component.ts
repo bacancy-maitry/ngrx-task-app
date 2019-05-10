@@ -13,7 +13,6 @@ import * as selectors from '../store/selector/selector'
 })
 export class DisplayUserComponent implements OnInit {
 
-  // userData$: Observable<DataInterface[]> = this.store.select((state) => state.userData)
   userData$: Array<DataInterface>
   isLoading$: Observable<boolean>
 
